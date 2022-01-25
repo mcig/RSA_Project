@@ -1,12 +1,10 @@
-import random
 
 
 def greatest_common_divisor(a, b):
     # keep dividing a by b until b is 0
     # "a" in the end will become our gcd
     while b != 0:
-        a = b
-        b = a % b
+        a, b = b, a % b
     return a
 
 
@@ -33,11 +31,6 @@ def primes_in_range(x, y):
             primes.append(n)
 
     return primes
-
-
-def get_random_prime_on_range(lo, hi):
-    primes = primes_in_range(lo, hi)
-    return random.choice(primes)
 
 
 def modular_inverse(a, b):

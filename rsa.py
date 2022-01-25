@@ -1,5 +1,6 @@
 import utils
 import math
+import random
 
 
 def generate_public_key(p, q):
@@ -10,11 +11,13 @@ def generate_public_key(p, q):
 
     # determining the value of e
     phi_n = utils.phi(n)
+    primes_in_given_range = utils.primes_in_range(2, phi_n)
 
-    e = utils.get_random_prime_on_range(2, phi_n)
+    # random prime in range
+    e = random.choice(primes_in_given_range)
 
     while utils.greatest_common_divisor(e, phi_n) != 1:
-        e = utils.get_random_prime_on_range(2, phi_n)
+        e = random.choice(primes_in_given_range)
 
     return n, e
 
@@ -48,8 +51,12 @@ def rsa_encrypt(message):
     """
     Encrypts message using RSA.
     """
-    p = utils.get_random_prime_on_range(2, 100000)
-    q = utils.get_random_prime_on_range(2, 100000)
+
+    primes_in_given_range = utils.primes_in_range(2, 1000)
+
+    # random prime in range
+    p = random.choice(primes_in_given_range)
+    q = random.choice(primes_in_given_range)
 
     n, e = generate_public_key(p, q)
     d = generate_private_key(n, e)
