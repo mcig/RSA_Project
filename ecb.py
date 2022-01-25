@@ -16,9 +16,9 @@ def encrypt_message_ecb(message):
     # convert each char to int
     blocks = list(map(lambda x: ord(x), blocks))
 
-    print(blocks)
     for i in range(0, len(blocks)):
-        encrypted_blocks[i], d, n = rsa.rsa_encrypt(blocks[i])
+        tmp, d, n = rsa.rsa_encrypt(blocks[i])
+        encrypted_blocks.append(tmp)
 
     return encrypted_blocks, d, n
 

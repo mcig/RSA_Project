@@ -1,5 +1,4 @@
 import utils
-import math
 import random
 
 
@@ -37,14 +36,18 @@ def encrypt_helper(m, e, n):
     """
     Encrypts message using public key.
     """
-    return math.pow(m, e, n)
+    print("m" + str(m))
+    print("e" + str(e))
+    print("n" + str(n))
+
+    return pow(m, e, n)
 
 
 def decrypt_helper(c, d, n):
     """
     Decrypts message using private key.
     """
-    return math.pow(c, d, n)
+    return pow(c, d, n)
 
 
 def rsa_encrypt(message):

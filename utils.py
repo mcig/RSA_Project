@@ -17,15 +17,25 @@ def phi(n):
     return phi
 
 
+def is_prime(n):
+    # Quick escape scenarios
+    if n == 1:
+        return False
+
+    p = 2
+
+    while pow(p, 2) <= n:
+        if n % p == 0:
+            return False
+        p += 1
+
+    return True
+
+
 def primes_in_range(x, y):
     primes = []
     for n in range(x, y):
-        isPrime = True
-
-        for num in range(2, n):
-            # if divisible, raise the flag
-            if n % num == 0:
-                isPrime = False
+        isPrime = is_prime(n)
 
         if isPrime:
             primes.append(n)
