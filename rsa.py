@@ -32,47 +32,30 @@ def generate_private_key(n, e):
     return d
 
 
-def encrypt_helper(m, e, n):
+def rsa_encrypt(m, e, n):
     """
     Encrypts message using public key.
     """
-    print("m" + str(m))
-    print("e" + str(e))
-    print("n" + str(n))
-
     return pow(m, e, n)
 
 
-def decrypt_helper(c, d, n):
+def rsa_decrypt(c, d, n):
     """
     Decrypts message using private key.
     """
     return pow(c, d, n)
 
 
-def rsa_encrypt(message):
-    """
-    Encrypts message using RSA.
-    """
-
+def generate_keys():
     primes_in_given_range = utils.primes_in_range(2, 1000)
 
     # random prime in range
     p = random.choice(primes_in_given_range)
     q = random.choice(primes_in_given_range)
 
+    print("Selected p:" + str(p))
+    print("Selected q:" + str(q))
+
     n, e = generate_public_key(p, q)
     d = generate_private_key(n, e)
-
-    c = encrypt_helper(message, e, n)
-
-    return c, d, n
-
-
-def rsa_decrypt(c, d, n):
-    """
-    Decrypts message using RSA.
-    """
-    m = decrypt_helper(c, d, n)
-
-    return m
+    return n, e, d
